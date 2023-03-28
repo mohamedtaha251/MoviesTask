@@ -4,7 +4,6 @@ package mohamed.taha.moviestask.remote
 
 import mohamed.taha.moviestask.BuildConfig
 import mohamed.taha.moviestask.remote.response.*
-import mohamed.taha.moviestask.ui.remote.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
