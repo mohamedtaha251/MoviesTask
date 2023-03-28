@@ -12,11 +12,11 @@ import javax.inject.Inject
 class SearchRepository @Inject constructor(
     private val api: ApiService
 ) {
-    fun multiSearch(searchParams: String, includeAdult: Boolean): Flow<PagingData<Search>> {
+    fun multiSearch(searchParams: String): Flow<PagingData<Search>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 20),
             pagingSourceFactory = {
-                SearchFilmSource(api = api, searchParams = searchParams, includeAdult)
+                SearchFilmSource(api = api, searchParams = searchParams)
             }
         ).flow
     }

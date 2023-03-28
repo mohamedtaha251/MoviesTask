@@ -10,7 +10,6 @@ import java.io.IOException
 class SearchFilmSource(
     private val api: ApiService,
     private val searchParams: String,
-    private val includeAdult: Boolean
 ) : PagingSource<Int, Search>() {
     override fun getRefreshKey(state: PagingState<Int, Search>): Int? = state.anchorPosition
 
@@ -20,7 +19,6 @@ class SearchFilmSource(
             val searchMovies = api.multiSearch(
                 page = nextPage,
                 searchParams = searchParams,
-                includeAdult = includeAdult
             )
             LoadResult.Page(
                 data = searchMovies.results,

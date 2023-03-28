@@ -87,7 +87,6 @@ interface ApiService {
     suspend fun multiSearch(
         @Query("query") searchParams: String,
         @Query("page") page: Int = 0,
-        @Query("include_adult") includeAdult: Boolean = true,
         @Query("api_key") apiKey: String = BuildConfig.YOUR_API_KEY,
         @Query("language") language: String = "en"
     ): MultiSearchResponse

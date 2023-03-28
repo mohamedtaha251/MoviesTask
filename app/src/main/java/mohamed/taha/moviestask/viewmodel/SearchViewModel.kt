@@ -38,7 +38,6 @@ class SearchViewModel @Inject constructor(
             if (searchParam.value.isNotEmpty()) {
                 _multiSearch.value = searchRepository.multiSearch(
                     searchParams = searchParam.value,
-                    includeAdult
                 ).map { result ->
                     result.filter {
                         ((it.title != null || it.originalName != null || it.originalTitle != null) &&
