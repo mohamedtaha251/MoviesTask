@@ -2,6 +2,8 @@ package mohamed.taha.moviestask.di
 
 import android.app.Application
 import androidx.room.Room
+import com.ericg.neatflix.data.repository.SearchRepository
+import com.ericg.neatflix.data.repository.WatchListRepository
 
 import dagger.Module
 import dagger.Provides
@@ -9,6 +11,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import mohamed.taha.moviestask.local.WatchListDatabase
 import mohamed.taha.moviestask.remote.ApiService
+import mohamed.taha.moviestask.repo.FilmRepository
+import mohamed.taha.moviestask.repo.GenreRepository
 import mohamed.taha.moviestask.util.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,26 +53,22 @@ object AppModule {
             .create(ApiService::class.java)
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideMoviesRepository(api: ApiService) = FilmRepository(api = api)
-//
-//    @Singleton
-//    @Provides
-//    fun provideSearchRepository(api: ApiService) = SearchRepository(api = api)
-//
-//    @Singleton
-//    @Provides
-//    fun providesGenresRepository(api: ApiService) = GenreRepository(api)
-//
-//    @Singleton
-//    @Provides
-//    fun providesWatchListRepository(watchListDatabase: WatchListDatabase) =
-//        WatchListRepository(database = watchListDatabase)
-//
-//    @Singleton
-//    @Provides
-//    fun providesReviewsRepository(api: ApiService): ReviewsRepository = ReviewsRepository(api)
+    @Singleton
+    @Provides
+    fun provideMoviesRepository(api: ApiService) = FilmRepository(api = api)
+
+    @Singleton
+    @Provides
+    fun provideSearchRepository(api: ApiService) = SearchRepository(api = api)
+
+    @Singleton
+    @Provides
+    fun providesGenresRepository(api: ApiService) = GenreRepository(api)
+
+    @Singleton
+    @Provides
+    fun providesWatchListRepository(watchListDatabase: WatchListDatabase) =
+        WatchListRepository(database = watchListDatabase)
 
     @Provides
     @Singleton
