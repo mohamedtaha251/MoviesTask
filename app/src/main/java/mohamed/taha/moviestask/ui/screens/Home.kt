@@ -63,7 +63,7 @@ import java.io.IOException
 //@Destination
 @Composable
 fun Home(
-    navigator: DestinationsNavigator?,
+    navigator: DestinationsNavigator?=null,
     homeViewModel: HomeViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel()
 ) {
@@ -72,14 +72,14 @@ fun Home(
             .fillMaxSize()
             .background(Color(0xFF180E36))
     ) {
-        ProfileAndSearchBar(navigator!!, homeViewModel)
+        ProfileAndSearchBar(navigator, homeViewModel)
         NestedScroll(navigator = navigator, homeViewModel, watchListViewModel)
     }
 }
 
 @Composable
 fun ProfileAndSearchBar(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator?=null,
     homeViewModel: HomeViewModel
 ) {
     Row(
@@ -190,7 +190,7 @@ fun ProfileAndSearchBar(
 
 @Composable
 fun NestedScroll(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator?,
     homeViewModel: HomeViewModel,
     watchListViewModel: WatchListViewModel
 ) {
@@ -386,7 +386,7 @@ private fun trimTitle(text: String) = if (text.length <= 26) text else {
 private fun ScrollableMovieItems(
     landscape: Boolean = false,
     selectedFilmType: FilmType,
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator?,
     pagingItems: LazyPagingItems<Film>,
     onErrorClick: () -> Unit
 ) {
