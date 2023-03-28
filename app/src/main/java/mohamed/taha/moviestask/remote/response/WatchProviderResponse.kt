@@ -1,4 +1,4 @@
-package mohamed.taha.moviestask.ui.remote.response
+package mohamed.taha.moviestask.remote.response
 
 import com.google.gson.annotations.SerializedName
 

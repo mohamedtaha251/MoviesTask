@@ -1,6 +1,6 @@
-package mohamed.taha.moviestask.ui.remote.response
+package mohamed.taha.moviestask.remote.response
 
-import mohamed.taha.moviestask.ui.model.Cast
+import mohamed.taha.moviestask.model.Cast
 import com.google.gson.annotations.SerializedName
 
 data class CastResponse(

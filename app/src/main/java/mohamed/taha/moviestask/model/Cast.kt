@@ -1,4 +1,4 @@
-package mohamed.taha.moviestask.ui.model
+package mohamed.taha.moviestask.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

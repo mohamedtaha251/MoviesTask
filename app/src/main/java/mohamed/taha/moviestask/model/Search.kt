@@ -1,7 +1,7 @@
-package mohamed.taha.moviestask.ui.model
+package mohamed.taha.moviestask.model
 
 import com.google.gson.annotations.SerializedName
-import mohamed.taha.moviestask.ui.model.Genre
+import mohamed.taha.moviestask.model.Genre
 
 /** This is similar to Film only that everything is nullable.*/
 data class Search(
