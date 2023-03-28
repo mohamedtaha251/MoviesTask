@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
         refreshAll()
     }
 
-    private fun refreshAll(filmType: FilmType = selectedFilmType.value) {
+     fun refreshAll(filmType: FilmType = selectedFilmType.value) {
 
         getTopRatedFilm( filmType)
         getNowPlayingFilms( filmType)
