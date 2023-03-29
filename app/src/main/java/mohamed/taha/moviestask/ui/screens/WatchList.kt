@@ -41,7 +41,7 @@ import timber.log.Timber
 //@Destination
 @Composable
 fun WatchList(
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator?=null,
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
@@ -69,7 +69,7 @@ fun WatchList(
             val focusManager = LocalFocusManager.current
             BackButton {
                 focusManager.clearFocus()
-                navigator.navigateUp()
+                navigator?.navigateUp()
             }
 
             Text(
