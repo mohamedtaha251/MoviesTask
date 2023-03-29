@@ -13,7 +13,9 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import mohamed.taha.moviestask.model.Film
+import mohamed.taha.moviestask.model.Search
 import mohamed.taha.moviestask.ui.screens.FilmDetails
+import mohamed.taha.moviestask.ui.screens.SearchScreen
 import mohamed.taha.moviestask.ui.theme.MoviesTaskTheme
 
 @AndroidEntryPoint
@@ -26,6 +28,7 @@ class SearchActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    SearchScreen(this)
                 }
 
         }

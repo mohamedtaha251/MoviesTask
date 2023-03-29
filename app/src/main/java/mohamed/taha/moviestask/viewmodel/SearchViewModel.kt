@@ -33,7 +33,7 @@ class SearchViewModel @Inject constructor(
         searchParam.value = ""
     }
 
-    fun searchRemoteMovie(includeAdult: Boolean) {
+    fun searchRemoteMovie() {
         viewModelScope.launch {
             if (searchParam.value.isNotEmpty()) {
                 _multiSearch.value = searchRepository.multiSearch(
