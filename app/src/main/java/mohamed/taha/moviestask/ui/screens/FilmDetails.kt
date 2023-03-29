@@ -276,13 +276,13 @@ fun FilmDetails(
                             watchListViewModel.removeFromWatchList(watchListMovie.mediaId)
 
                             Toast.makeText(
-                                context, "Removed from watchlist", LENGTH_SHORT
+                                context, "Removed from favorite", LENGTH_SHORT
                             ).show()
 
                         } else {
                             watchListViewModel.addToWatchList(watchListMovie)
                             Toast.makeText(
-                                context, "Added to watchlist", LENGTH_SHORT
+                                context, "Added to favorite", LENGTH_SHORT
                             ).show()
                         }
                     }) {
