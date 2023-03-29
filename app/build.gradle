@@ -63,6 +63,19 @@ android {
         }
     }
 
+    flavorDimensions "features"
+    productFlavors {
+
+        Premium {
+            dimension "features"
+            applicationIdSuffix ".Premium"
+        }
+        Freemium {
+            dimension "features"
+            applicationIdSuffix ".Free"
+        }
+    }
+
 
 }
 
