@@ -26,6 +26,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "YOUR_API_KEY", apikeyProperties['YOUR_API_KEY'])
+        vectorDrawables {
+            useSupportLibrary true
+        }
 
     }
 
@@ -53,6 +56,11 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 
 
@@ -107,6 +115,7 @@ dependencies {
 
     // RaamCosta Navigation
     implementation 'io.github.raamcosta.compose-destinations:core:1.4.0-beta'
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     ksp 'io.github.raamcosta.compose-destinations:ksp:1.4.0-beta'
 
     // Hilt

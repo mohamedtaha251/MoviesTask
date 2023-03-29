@@ -14,7 +14,7 @@ private val DarkColorPalette = darkColors(
 )
 
 @Composable
-fun NeatFlixTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun MoviesTaskTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {

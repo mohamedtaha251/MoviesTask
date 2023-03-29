@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
@@ -47,6 +48,7 @@ import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.model.Film
+import mohamed.taha.moviestask.ui.activity.MovieDetails
 import mohamed.taha.moviestask.ui.sharedComposables.LoopReverseLottieLoader
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
 import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
@@ -275,6 +277,8 @@ private fun ScrollableMovieItems(
     pagingItems: LazyPagingItems<Film>,
     onErrorClick: () -> Unit
 ) {
+    val context = LocalContext.current
+
     Box(
         contentAlignment = Center,
         modifier = Modifier
@@ -300,11 +304,8 @@ private fun ScrollableMovieItems(
                                 .width(if (landscape) 215.dp else 130.dp)
                                 .height(if (landscape) 161.25.dp else 195.dp)
                         ) {
-//                            navigator.navigate(
-//                                direction = MovieDetailsDestination(film, selectedFilmType = selectedFilmType)
-//                            ) {
-//                                launchSingleTop = true
-//                            }
+                            MovieDetails.start(context,film)
+
                         }
                     }
                 }

@@ -52,13 +52,13 @@ import java.util.*
 
 //@Destination
 @Composable
-fun MovieDetails(
-    navigator: DestinationsNavigator,
+fun FilmDetails(
+    navigator: DestinationsNavigator?=null,
     homeViewModel: HomeViewModel = hiltViewModel(),
     detailsViewModel: DetailsViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     currentFilm: Film,
-    selectedFilmType: FilmType
+    selectedFilmType: FilmType=FilmType.MOVIE
 ) {
     var film by remember {
         mutableStateOf(currentFilm)
@@ -140,7 +140,7 @@ fun MovieDetails(
                     top.linkTo(parent.top, margin = 16.dp)
                     start.linkTo(parent.start, margin = 10.dp)
                 }) {
-                navigator.navigateUp()
+                navigator?.navigateUp()
             }
 
             Box(
