@@ -231,6 +231,7 @@ fun FilmDetails(
                     color = Color.White.copy(alpha = 0.56F)
                 )
 
+
                 RatingBar(
                     value = (film.voteAverage / 2).toFloat(),
                     modifier = Modifier.padding(start = 6.dp, bottom = 4.dp, top = 4.dp),
@@ -243,10 +244,22 @@ fun FilmDetails(
                         .stepSize(StepSize.HALF)
                         .numStars(5)
                         .size(16.dp)
-                        .padding(4.dp),
+                        .padding (4.dp),
                     onValueChange = {},
                     onRatingChanged = {}
                 )
+
+                Text(
+                    text = film.voteCount.toString() + " vote",
+                    color = Color.Yellow,
+                    modifier = Modifier
+                        .padding(top = 3.dp, bottom = 4.dp, start = 4.dp, end = 4.dp)
+                )
+
+
+
+
+
 
                 Row(
                     horizontalArrangement = Arrangement.Start,
@@ -255,6 +268,7 @@ fun FilmDetails(
                         .padding(start = 4.dp, bottom = 8.dp)
                         .fillMaxWidth(0.42F),
                 ) {
+
 
                     val context = LocalContext.current
                     IconButton(onClick = {
@@ -340,7 +354,8 @@ fun FilmDetails(
             }
         }
 
-        ExpandableText(
+        Text(
+            color = Color.White,
             text = film.overview,
             modifier = Modifier
                 .padding(top = 3.dp, bottom = 4.dp, start = 4.dp, end = 4.dp)
