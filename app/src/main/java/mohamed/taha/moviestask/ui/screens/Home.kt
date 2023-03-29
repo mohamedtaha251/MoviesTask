@@ -49,6 +49,7 @@ import com.skydoves.landscapist.coil.CoilImage
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.model.Film
 import mohamed.taha.moviestask.ui.activity.MovieDetails
+import mohamed.taha.moviestask.ui.activity.SearchActivity
 import mohamed.taha.moviestask.ui.sharedComposables.LoopReverseLottieLoader
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
 import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
@@ -64,7 +65,7 @@ import java.io.IOException
 //@Destination
 @Composable
 fun Home(
-    navigator: DestinationsNavigator?=null,
+    navigator: DestinationsNavigator? = null,
     homeViewModel: HomeViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel()
 ) {
@@ -80,9 +81,11 @@ fun Home(
 
 @Composable
 fun ProfileAndSearchBar(
-    navigator: DestinationsNavigator?=null,
+    navigator: DestinationsNavigator? = null,
     homeViewModel: HomeViewModel
 ) {
+    val context = LocalContext.current
+
     Row(
         modifier = Modifier
             .padding(top = 12.dp, bottom = 4.dp, start = 8.dp, end = 8.dp)
@@ -94,11 +97,7 @@ fun ProfileAndSearchBar(
 
         IconButton(
             onClick = {
-//                navigator.navigate(
-//                    direction = SearchScreenDestination()
-//                ) {
-//                    launchSingleTop = true
-//                }
+                SearchActivity.start(context)
             }
         ) {
             Icon(
@@ -299,12 +298,12 @@ private fun ScrollableMovieItems(
                         MovieItem(
                             landscape = landscape,
                             imageUrl = imagePath,
-                            title = film?.title?:"",
+                            title = film?.title ?: "",
                             modifier = Modifier
                                 .width(if (landscape) 215.dp else 130.dp)
                                 .height(if (landscape) 161.25.dp else 195.dp)
                         ) {
-                            MovieDetails.start(context,film)
+                            MovieDetails.start(context, film)
 
                         }
                     }
