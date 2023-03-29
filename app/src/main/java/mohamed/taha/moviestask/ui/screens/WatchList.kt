@@ -22,11 +22,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.foundation.lazy.items
 
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.local.MyListMovie
+import mohamed.taha.moviestask.model.Film
 import mohamed.taha.moviestask.ui.sharedComposables.BackButton
 import mohamed.taha.moviestask.ui.sharedComposables.SearchResultItem
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
@@ -38,16 +40,19 @@ import mohamed.taha.moviestask.viewmodel.WatchListViewModel
 import timber.log.Timber
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
-//@Destination
 @Composable
 fun WatchList(
-    navigator: DestinationsNavigator?=null,
+    navigator: DestinationsNavigator? = null,
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
     var totalDismissed by remember { mutableStateOf(0) }
 
     val myWatchList = watchListViewModel.watchList.value.collectAsState(initial = emptyList())
+
+    LaunchedEffect(key1 = myWatchList.value.size) {
+
+    }
 
     var currentList: State<List<MyListMovie>> by remember { mutableStateOf(myWatchList) }
     if (searchViewModel.searchParamState.value.isEmpty()) {
@@ -127,32 +132,28 @@ fun WatchList(
             }
         }
 
-//        LazyColumn(
-//            modifier = Modifier
-//                .fillMaxSize(),
-//            contentPadding = PaddingValues(vertical = 12.dp)
-//        ) {
-//            items(myWatchList.value, key = { it.mediaId }) { film ->
-//                SwipeToDismissItem(
-//                    modifier = Modifier.animateItemPlacement(),
-//                    onDismiss = {
-//                        watchListViewModel.removeFromWatchList(film.mediaId)
-//                        totalDismissed += 1
-//                        // FIXME: Find another way to fix swipe after searching
-//                        // searchViewModel.searchParam.value = ""
-//                        // searchViewModel.previousSearch.value = ""
-//                    }) {
-//                    SearchResultItem(
-//                        title = film.title,
-//                        mediaType = null,
-//                        posterImage = "${Constants.BASE_POSTER_IMAGE_URL}/${film.imagePath}",
-//                        genres = emptyList(),
-//                        rating = film.rating,
-//                        releaseYear = film.releaseDate
-//                    ) { }
-//                }
-//            }
-//        }
+        LazyColumn() {
+            items(myWatchList.value) { film ->
+                SwipeToDismissItem(
+                    modifier = Modifier.animateItemPlacement(),
+                    onDismiss = {
+                        watchListViewModel.removeFromWatchList(film.mediaId)
+                        totalDismissed += 1
+                        // FIXME: Find another way to fix swipe after searching
+                        // searchViewModel.searchParam.value = ""
+                        // searchViewModel.previousSearch.value = ""
+                    }) {
+                    SearchResultItem(
+                        title = film.title,
+                        mediaType = null,
+                        posterImage = "${Constants.BASE_POSTER_IMAGE_URL}/${film.imagePath}",
+                        genres = emptyList(),
+                        rating = film.rating,
+                        releaseYear = film.releaseDate
+                    ) { }
+                }
+            }
+        }
 
         var openDialog by remember { mutableStateOf(true) }
         if (totalDismissed == 3 && openDialog && currentList.value.size > 1) {
@@ -230,3 +231,4 @@ fun SwipeToDismissItem(
         directions = setOf(DismissDirection.EndToStart)
     )
 }
+

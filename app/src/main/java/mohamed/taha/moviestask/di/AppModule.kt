@@ -3,7 +3,7 @@ package mohamed.taha.moviestask.di
 import android.app.Application
 import androidx.room.Room
 import com.ericg.neatflix.data.repository.SearchRepository
-import com.ericg.neatflix.data.repository.WatchListRepository
+import mohamed.taha.moviestask.repo.WatchListRepository
 
 import dagger.Module
 import dagger.Provides

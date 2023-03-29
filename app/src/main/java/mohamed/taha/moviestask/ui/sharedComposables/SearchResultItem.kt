@@ -34,13 +34,13 @@ import mohamed.taha.moviestask.model.Genre as MovieGenre
 
 @Composable
 fun SearchResultItem(
-    title: String?,
-    mediaType: String?,
-    posterImage: String?,
-    genres: List<MovieGenre>?,
-    rating: Double,
-    releaseYear: String?,
-    onClick: () -> Unit?
+    title: String?="",
+    mediaType: String?="",
+    posterImage: String?="",
+    genres: List<MovieGenre>?= emptyList(),
+    rating: Double=0.0,
+    releaseYear: String?="",
+    onClick: () -> Unit?={}
 ) {
     Box(
         modifier = Modifier
