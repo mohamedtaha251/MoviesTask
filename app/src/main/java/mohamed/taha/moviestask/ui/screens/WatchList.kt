@@ -64,29 +64,6 @@ fun WatchList(
             .fillMaxSize()
             .background(AppPrimaryColor)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 16.dp)
-                .fillMaxWidth()
-        ) {
-            val focusManager = LocalFocusManager.current
-            BackButton {
-                focusManager.clearFocus()
-                navigator?.navigateUp()
-            }
-
-            Text(
-                text = "My Watch list",
-                fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center,
-                fontSize = 24.sp,
-                color = AppOnPrimaryColor
-            )
-
-
-        }
 
 
         fun countItems(items: Int): String {

@@ -1,5 +1,6 @@
 package mohamed.taha.moviestask.ui.screens
 
+import android.app.Activity
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.compose.foundation.Image
@@ -25,13 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.ericg.neatflix.sharedComposables.MovieGenreChip
 import com.gowtham.ratingbar.RatingBar
 import com.gowtham.ratingbar.RatingBarConfig
 import com.gowtham.ratingbar.RatingBarStyle
 import com.gowtham.ratingbar.StepSize
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -40,7 +39,6 @@ import mohamed.taha.moviestask.local.MyListMovie
 import mohamed.taha.moviestask.model.Film
 import mohamed.taha.moviestask.model.Genre
 import mohamed.taha.moviestask.ui.sharedComposables.BackButton
-import mohamed.taha.moviestask.ui.sharedComposables.ExpandableText
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
 import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
 import mohamed.taha.moviestask.ui.theme.ButtonColor
@@ -56,7 +54,7 @@ import java.util.*
 //@Destination
 @Composable
 fun FilmDetails(
-    navigator: DestinationsNavigator? = null,
+    activity: Activity,
     homeViewModel: HomeViewModel = hiltViewModel(),
     detailsViewModel: DetailsViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel(),
@@ -144,7 +142,8 @@ fun FilmDetails(
                     top.linkTo(parent.top, margin = 16.dp)
                     start.linkTo(parent.start, margin = 10.dp)
                 }) {
-                navigator?.navigateUp()
+                activity.finish()
+
             }
 
             Box(
@@ -244,7 +243,7 @@ fun FilmDetails(
                         .stepSize(StepSize.HALF)
                         .numStars(5)
                         .size(16.dp)
-                        .padding (4.dp),
+                        .padding(4.dp),
                     onValueChange = {},
                     onRatingChanged = {}
                 )

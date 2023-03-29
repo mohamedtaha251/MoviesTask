@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
@@ -35,6 +36,7 @@ import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 import mohamed.taha.moviestask.R
+import mohamed.taha.moviestask.ui.activity.MovieDetails
 import mohamed.taha.moviestask.ui.sharedComposables.LoopReverseLottieLoader
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
 import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
@@ -52,6 +54,7 @@ fun TopRated(
     navigator: DestinationsNavigator?=null,
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
+    val context=LocalContext.current
     val topRatedFilms = homeViewModel.topRatedFilmState.value.collectAsLazyPagingItems()
     val landscape=false
     Box(
@@ -80,11 +83,8 @@ fun TopRated(
                             modifier = Modifier
                                 .height(if (landscape) 161.25.dp else 195.dp)
                         ) {
-//                            navigator.navigate(
-//                                direction = MovieDetailsDestination(film, selectedFilmType = selectedFilmType)
-//                            ) {
-//                                launchSingleTop = true
-//                            }
+                            MovieDetails.start(context, film)
+
                         }
                     }
                 }
