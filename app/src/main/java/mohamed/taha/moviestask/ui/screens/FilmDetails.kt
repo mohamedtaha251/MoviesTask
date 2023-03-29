@@ -5,6 +5,7 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -24,11 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.ericg.neatflix.sharedComposables.MovieGenreChip
 import com.gowtham.ratingbar.RatingBar
 import com.gowtham.ratingbar.RatingBarConfig
 import com.gowtham.ratingbar.RatingBarStyle
 import com.gowtham.ratingbar.StepSize
-import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -36,6 +38,7 @@ import com.skydoves.landscapist.coil.CoilImage
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.local.MyListMovie
 import mohamed.taha.moviestask.model.Film
+import mohamed.taha.moviestask.model.Genre
 import mohamed.taha.moviestask.ui.sharedComposables.BackButton
 import mohamed.taha.moviestask.ui.sharedComposables.ExpandableText
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
@@ -53,12 +56,12 @@ import java.util.*
 //@Destination
 @Composable
 fun FilmDetails(
-    navigator: DestinationsNavigator?=null,
+    navigator: DestinationsNavigator? = null,
     homeViewModel: HomeViewModel = hiltViewModel(),
     detailsViewModel: DetailsViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     currentFilm: Film,
-    selectedFilmType: FilmType=FilmType.MOVIE
+    selectedFilmType: FilmType = FilmType.MOVIE
 ) {
     var film by remember {
         mutableStateOf(currentFilm)
@@ -81,6 +84,7 @@ fun FilmDetails(
     LaunchedEffect(key1 = film) {
         watchListViewModel.exists(mediaId = film.id)
         detailsViewModel.getWatchProviders(film.id, selectedFilmType)
+        detailsViewModel.getFilmGenre(film.id)
     }
 
     Column(
@@ -316,25 +320,25 @@ fun FilmDetails(
             )
         }
 
-//        LazyRow(
-//            modifier = Modifier
-//                .padding(top = (96).dp, bottom = 4.dp, start = 4.dp, end = 4.dp)
-//                .fillMaxWidth()
-//        ) {
-//            val filmGenres: List<Genre> = homeViewModel.filmGenres.filter { genre ->
-//                return@filter if (film.genreIds.isNullOrEmpty()) false else
-//                    film.genreIds!!.contains(genre.id)
-//            }
-//            filmGenres.forEach { genre ->
-//                item {
-//                    MovieGenreChip(
-//                        background = ButtonColor,
-//                        textColor = AppOnPrimaryColor,
-//                        genre = genre.name
-//                    )
-//                }
-//            }
-//        }
+        LazyRow(
+            modifier = Modifier
+                .padding(top = (96).dp, bottom = 4.dp, start = 4.dp, end = 4.dp)
+                .fillMaxWidth()
+        ) {
+            val filmGenres: List<Genre> = detailsViewModel.filmGenres.filter { genre ->
+                return@filter if (film.genreIds.isNullOrEmpty()) false else
+                    film.genreIds!!.contains(genre.id)
+            }
+            filmGenres.forEach { genre ->
+                item {
+                    MovieGenreChip(
+                        background = ButtonColor,
+                        textColor = AppOnPrimaryColor,
+                        genre = genre.name
+                    )
+                }
+            }
+        }
 
         ExpandableText(
             text = film.overview,
