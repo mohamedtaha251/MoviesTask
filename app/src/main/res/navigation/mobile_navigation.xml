@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="mohamed.taha.moviestask.ui.home.HomeFragment"
+        android:name="mohamed.taha.moviestask.ui.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="mohamed.taha.moviestask.ui.dashboard.DashboardFragment"
+        android:name="mohamed.taha.moviestask.ui.fragment.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="mohamed.taha.moviestask.ui.notifications.NotificationsFragment"
+        android:name="mohamed.taha.moviestask.ui.fragment.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
