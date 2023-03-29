@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.ui.screens.Home
 
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 

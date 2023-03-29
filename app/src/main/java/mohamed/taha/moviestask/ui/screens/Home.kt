@@ -262,7 +262,7 @@ fun MovieItem(
     }
 }
 
-private fun trimTitle(text: String) = if (text.length <= 26) text else {
+internal fun trimTitle(text: String) = if (text.length <= 26) text else {
     val textWithEllipsis = text.removeRange(startIndex = 26, endIndex = text.length)
     "$textWithEllipsis..."
 }
@@ -388,55 +388,3 @@ fun SelectableGenreChip(
     }
 }
 
-@Composable
-fun ShowAboutCategory(name: String, description: String) {
-    var showAboutThisCategory by remember { mutableStateOf(false) }
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = name,
-            fontSize = 24.sp,
-            color = AppOnPrimaryColor,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(
-                start = 4.dp, top = 14.dp,
-                end = 8.dp, bottom = 4.dp
-            )
-        )
-        IconButton(
-            modifier = Modifier.padding(top = 14.dp, bottom = 4.dp),
-            onClick = { showAboutThisCategory = showAboutThisCategory.not() }) {
-            Icon(
-                imageVector = if (showAboutThisCategory) Icons.Filled.KeyboardArrowUp else Icons.Filled.Info,
-                tint = AppOnPrimaryColor,
-                contentDescription = "Info Icon"
-            )
-        }
-    }
-
-    AnimatedVisibility(visible = showAboutThisCategory) {
-        Box(
-            contentAlignment = Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp)
-                .border(
-                    width = 1.dp, color = ButtonColor,
-                    shape = RoundedCornerShape(4.dp)
-                )
-                .background(ButtonColor.copy(alpha = 0.25F))
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(8.dp)
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    modifier = Modifier.padding(vertical = 4.dp),
-                    text = description,
-                    color = AppOnPrimaryColor
-                )
-            }
-        }
-    }
-}
