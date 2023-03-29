@@ -1,6 +1,7 @@
 package mohamed.taha.moviestask.model
 
 import android.os.Parcelable
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -41,3 +42,21 @@ data class Film(
     @SerializedName("vote_count")
     val voteCount: Int
 ) : Parcelable
+{
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+
+    companion object {
+
+        fun toModel(string: String?): Film? {
+
+            return try {
+                Gson().fromJson(string, Film::class.java)
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                null
+            }
+        }
+    }
+}
