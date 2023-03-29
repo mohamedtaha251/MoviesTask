@@ -46,6 +46,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
+import mohamed.taha.moviestask.BuildConfig
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.model.Film
 import mohamed.taha.moviestask.ui.activity.MovieDetails
@@ -154,38 +155,27 @@ fun NestedScroll(
             )
         }
 
-        item {
-            Text(
-                text = "Now Playing",
-                fontSize = 24.sp,
-                color = AppOnPrimaryColor,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 4.dp, top = 14.dp, bottom = 4.dp)
-            )
-        }
-        item {
-            ScrollableMovieItems(
-                navigator = navigator,
-                pagingItems = nowPlayingFilms,
-                selectedFilmType = selectedFilmType,
-                onErrorClick = {
-                    homeViewModel.refreshAll()
-                }
-            )
-        }
+        if(BuildConfig.FLAVOR=="Premium") {
 
-        if (homeViewModel.selectedFilmType.value == FilmType.MOVIE) {
             item {
                 Text(
-                    text = "Upcoming",
+                    text = "Now Playing",
                     fontSize = 24.sp,
                     color = AppOnPrimaryColor,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 4.dp, top = 14.dp, bottom = 4.dp)
                 )
             }
-
-
+            item {
+                ScrollableMovieItems(
+                    navigator = navigator,
+                    pagingItems = nowPlayingFilms,
+                    selectedFilmType = selectedFilmType,
+                    onErrorClick = {
+                        homeViewModel.refreshAll()
+                    }
+                )
+            }
         }
 
         item {
