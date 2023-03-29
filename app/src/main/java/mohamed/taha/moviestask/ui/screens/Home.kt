@@ -41,7 +41,6 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
@@ -90,84 +89,6 @@ fun ProfileAndSearchBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Top
     ) {
-        Box(
-            contentAlignment = Center
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(53.dp)
-                    .clip(CircleShape)
-                // .background(AppOnPrimaryColor)
-            )
-            Box(
-                modifier = Modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-                    .background(AppPrimaryColor)
-            )
-            IconButton(onClick = {
-
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_search),
-                    tint = AppOnPrimaryColor,
-                    modifier = Modifier.size(32.dp),
-                    contentDescription = "profile picture"
-                )
-            }
-        }
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-
-            val filmTypes = listOf(FilmType.MOVIE, FilmType.TVSHOW)
-            val selectedFilmType = homeViewModel.selectedFilmType.value
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                filmTypes.forEachIndexed { index, filmType ->
-                    Text(
-                        text = if (filmType == FilmType.MOVIE) "Movies" else "Tv Shows",
-                        fontWeight = if (selectedFilmType == filmTypes[index]) FontWeight.Bold else Light,
-                        fontSize = if (selectedFilmType == filmTypes[index]) 24.sp else 16.sp,
-                        color = if (selectedFilmType == filmTypes[index])
-                            AppOnPrimaryColor else Color.LightGray.copy(alpha = 0.78F),
-                        modifier = Modifier
-                            .padding(start = 4.dp, end = 4.dp, top = 8.dp)
-                            .clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null
-                            ) {
-                                if (homeViewModel.selectedFilmType.value != filmTypes[index]) {
-                                    homeViewModel.selectedFilmType.value = filmTypes[index]
-                                    homeViewModel.refreshAll()
-                                }
-                            }
-                    )
-                }
-            }
-
-            val animOffset = animateDpAsState(
-                targetValue = when (filmTypes.indexOf(selectedFilmType)) {
-                    0 -> (-35).dp
-                    else -> 30.dp
-                },
-                animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy
-                )
-            )
-
-            Box(
-                modifier = Modifier
-                    .width(46.dp)
-                    .height(2.dp)
-                    .offset(x = animOffset.value)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(AppOnPrimaryColor)
-            )
-        }
 
         IconButton(
             onClick = {
@@ -211,42 +132,6 @@ fun NestedScroll(
             .padding(horizontal = 2.dp)
             .fillMaxSize()
     ) {
-        item {
-            Text(
-                text = "Genres",
-                fontSize = 24.sp,
-                color = AppOnPrimaryColor,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(all = 4.dp)
-            )
-        }
-        item {
-            val genres = "All"
-
-
-        }
-
-        item {
-            Text(
-                text = "Trending",
-                fontSize = 24.sp,
-                color = AppOnPrimaryColor,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 4.dp, top = 8.dp)
-            )
-        }
-
-
-        item {
-            Text(
-                text = "Popular",
-                fontSize = 24.sp,
-                color = AppOnPrimaryColor,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 4.dp, top = 6.dp)
-            )
-        }
-
 
         item {
             Text(
