@@ -1,4 +1,4 @@
-package com.ericg.neatflix.sharedComposables
+package mohamed.taha.moviestask.ui.sharedComposables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

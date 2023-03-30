@@ -1,4 +1,4 @@
-package com.ericg.neatflix.data.repository
+package mohamed.taha.moviestask.repo
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

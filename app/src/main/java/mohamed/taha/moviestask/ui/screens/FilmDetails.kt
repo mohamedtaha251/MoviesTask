@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ericg.neatflix.sharedComposables.MovieGenreChip
+import mohamed.taha.moviestask.ui.sharedComposables.MovieGenreChip
 import com.gowtham.ratingbar.RatingBar
 import com.gowtham.ratingbar.RatingBarConfig
 import com.gowtham.ratingbar.RatingBarStyle
@@ -44,9 +44,7 @@ import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
 import mohamed.taha.moviestask.ui.theme.ButtonColor
 import mohamed.taha.moviestask.util.Constants.BASE_BACKDROP_IMAGE_URL
 import mohamed.taha.moviestask.util.Constants.BASE_POSTER_IMAGE_URL
-import mohamed.taha.moviestask.util.FilmType
 import mohamed.taha.moviestask.viewmodel.DetailsViewModel
-import mohamed.taha.moviestask.viewmodel.HomeViewModel
 import mohamed.taha.moviestask.viewmodel.WatchListViewModel
 import java.text.SimpleDateFormat
 import java.util.*
