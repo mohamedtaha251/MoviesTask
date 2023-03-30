@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.local.MyListMovie
 import mohamed.taha.moviestask.ui.sharedComposables.SearchResultItem

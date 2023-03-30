@@ -31,7 +31,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -51,7 +51,6 @@ import java.io.IOException
 //@Destination
 @Composable
 fun TopRated(
-    navigator: DestinationsNavigator?=null,
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
     val context=LocalContext.current

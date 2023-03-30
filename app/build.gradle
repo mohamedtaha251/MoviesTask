@@ -119,17 +119,8 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-    // Stetho
-    implementation 'com.facebook.stetho:stetho:1.6.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
-
     // Lottie
     implementation "com.airbnb.android:lottie-compose:$lottieVersion"
-
-    // RaamCosta Navigation
-    implementation 'io.github.raamcosta.compose-destinations:core:1.4.0-beta'
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.4.0-beta'
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
@@ -155,9 +146,6 @@ dependencies {
 
     // Pagination
     implementation "androidx.paging:paging-compose:1.0.0-alpha15"
-
-    //Prefs Datastore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Room
     def room_version = "2.4.3"
