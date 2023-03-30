@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import mohamed.taha.moviestask.model.Film
+import mohamed.taha.moviestask.paging.MostPopularFilmSource
 import mohamed.taha.moviestask.paging.NowPlayingFilmSource
 import mohamed.taha.moviestask.paging.TopRatedFilmSource
 import mohamed.taha.moviestask.remote.ApiService
@@ -32,6 +33,15 @@ class FilmRepository @Inject constructor(
             config = PagingConfig(enablePlaceholders = false, pageSize = 20),
             pagingSourceFactory = {
                 NowPlayingFilmSource(api = api, filmType)
+            }
+        ).flow
+    }
+
+    fun getMostPopularFilms(filmType: FilmType): Flow<PagingData<Film>> {
+        return Pager(
+            config = PagingConfig(enablePlaceholders = false, pageSize = 20),
+            pagingSourceFactory = {
+                MostPopularFilmSource(api = api, filmType)
             }
         ).flow
     }

@@ -120,6 +120,7 @@ fun NestedScroll(
 
     val topRatedFilms = homeViewModel.topRatedFilmState.value.collectAsLazyPagingItems()
     val nowPlayingFilms = homeViewModel.nowPlayingMoviesState.value.collectAsLazyPagingItems()
+    val mostPopularFilms = homeViewModel.mostPopularMoviesState.value.collectAsLazyPagingItems()
     val selectedFilmType = homeViewModel.selectedFilmType.value
     val myWatchList = watchListViewModel.watchList.value.collectAsState(initial = emptyList())
 
@@ -191,7 +192,7 @@ fun NestedScroll(
         item {
             ScrollableMovieItems(
                 navigator = navigator,
-                pagingItems = nowPlayingFilms,
+                pagingItems = mostPopularFilms,
                 selectedFilmType = selectedFilmType,
                 onErrorClick = {
                     homeViewModel.refreshAll()

@@ -30,6 +30,9 @@ class HomeViewModel @Inject constructor(
     private var _nowPlayingFilm = mutableStateOf<Flow<PagingData<Film>>>(emptyFlow())
     val nowPlayingMoviesState: State<Flow<PagingData<Film>>> = _nowPlayingFilm
 
+    private var _mostPopularFilm = mutableStateOf<Flow<PagingData<Film>>>(emptyFlow())
+    val mostPopularMoviesState: State<Flow<PagingData<Film>>> = _mostPopularFilm
+
 
     init {
         refreshAll()
@@ -39,6 +42,7 @@ class HomeViewModel @Inject constructor(
 
         getTopRatedFilm( filmType)
         getNowPlayingFilms( filmType)
+        getMostPopularFilms( filmType)
 
     }
 
@@ -53,6 +57,12 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _nowPlayingFilm.value =
                 filmRepository.getNowPlayingFilms(filmType).cachedIn(viewModelScope)
+        }
+    }
+    private fun getMostPopularFilms(filmType: FilmType) {
+        viewModelScope.launch {
+            _mostPopularFilm.value =
+                filmRepository.getMostPopularFilms(filmType).cachedIn(viewModelScope)
         }
     }
 }
