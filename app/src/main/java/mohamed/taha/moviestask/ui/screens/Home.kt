@@ -18,9 +18,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
@@ -57,7 +54,6 @@ import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
 import mohamed.taha.moviestask.ui.theme.ButtonColor
 import mohamed.taha.moviestask.util.Constants.BASE_BACKDROP_IMAGE_URL
 import mohamed.taha.moviestask.util.Constants.BASE_POSTER_IMAGE_URL
-import mohamed.taha.moviestask.util.FilmType
 import mohamed.taha.moviestask.viewmodel.HomeViewModel
 import mohamed.taha.moviestask.viewmodel.WatchListViewModel
 import retrofit2.HttpException
@@ -66,7 +62,7 @@ import java.io.IOException
 //@Destination
 @Composable
 fun Home(
-    navigator: DestinationsNavigator? = null,
+
     homeViewModel: HomeViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel()
 ) {
@@ -75,16 +71,13 @@ fun Home(
             .fillMaxSize()
             .background(Color(0xFF180E36))
     ) {
-        ProfileAndSearchBar(navigator, homeViewModel)
-        NestedScroll(navigator = navigator, homeViewModel, watchListViewModel)
+        SearchMoviesBar( )
+        NestedScroll( homeViewModel, watchListViewModel)
     }
 }
 
 @Composable
-fun ProfileAndSearchBar(
-    navigator: DestinationsNavigator? = null,
-    homeViewModel: HomeViewModel
-) {
+fun SearchMoviesBar() {
     val context = LocalContext.current
 
     Row(
@@ -113,7 +106,6 @@ fun ProfileAndSearchBar(
 
 @Composable
 fun NestedScroll(
-    navigator: DestinationsNavigator?,
     homeViewModel: HomeViewModel,
     watchListViewModel: WatchListViewModel
 ) {
@@ -146,16 +138,16 @@ fun NestedScroll(
         }
         item {
             ScrollableMovieItems(
-                navigator = navigator,
-                pagingItems = topRatedFilms,
                 
+                pagingItems = topRatedFilms,
+
                 onErrorClick = {
                     homeViewModel.refreshAll()
                 }
             )
         }
 
-        if(BuildConfig.FLAVOR=="Premium") {
+        if (BuildConfig.FLAVOR == "Premium") {
 
             item {
                 Text(
@@ -168,7 +160,7 @@ fun NestedScroll(
             }
             item {
                 ScrollableMovieItems(
-                    navigator = navigator,
+                    
                     pagingItems = nowPlayingFilms,
 
                     onErrorClick = {
@@ -190,9 +182,9 @@ fun NestedScroll(
         }
         item {
             ScrollableMovieItems(
-                navigator = navigator,
-                pagingItems = mostPopularFilms,
                 
+                pagingItems = mostPopularFilms,
+
                 onErrorClick = {
                     homeViewModel.refreshAll()
                 }
@@ -282,7 +274,6 @@ internal fun trimTitle(text: String) = if (text.length <= 26) text else {
 @Composable
 private fun ScrollableMovieItems(
     landscape: Boolean = false,
-    navigator: DestinationsNavigator?,
     pagingItems: LazyPagingItems<Film>,
     onErrorClick: () -> Unit
 ) {

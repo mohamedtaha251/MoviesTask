@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -15,21 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.foundation.lazy.items
-
-import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.local.MyListMovie
-import mohamed.taha.moviestask.model.Film
-import mohamed.taha.moviestask.ui.sharedComposables.BackButton
 import mohamed.taha.moviestask.ui.sharedComposables.SearchResultItem
 import mohamed.taha.moviestask.ui.theme.AppOnPrimaryColor
 import mohamed.taha.moviestask.ui.theme.AppPrimaryColor
@@ -37,12 +29,11 @@ import mohamed.taha.moviestask.ui.theme.ButtonColor
 import mohamed.taha.moviestask.util.Constants
 import mohamed.taha.moviestask.viewmodel.SearchViewModel
 import mohamed.taha.moviestask.viewmodel.WatchListViewModel
-import timber.log.Timber
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun WatchList(
-    navigator: DestinationsNavigator? = null,
+    
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
