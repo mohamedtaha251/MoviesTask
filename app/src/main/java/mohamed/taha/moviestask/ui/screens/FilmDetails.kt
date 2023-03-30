@@ -55,16 +55,13 @@ import java.util.*
 @Composable
 fun FilmDetails(
     activity: Activity,
-    homeViewModel: HomeViewModel = hiltViewModel(),
     detailsViewModel: DetailsViewModel = hiltViewModel(),
     watchListViewModel: WatchListViewModel = hiltViewModel(),
     currentFilm: Film,
-    selectedFilmType: FilmType = FilmType.MOVIE
 ) {
     var film by remember {
         mutableStateOf(currentFilm)
     }
-    val filmType: FilmType = remember { selectedFilmType }
 
     val date = SimpleDateFormat.getDateTimeInstance().format(Date())
     val watchListMovie = MyListMovie(
@@ -81,7 +78,7 @@ fun FilmDetails(
 
     LaunchedEffect(key1 = film) {
         watchListViewModel.exists(mediaId = film.id)
-        detailsViewModel.getWatchProviders(film.id, selectedFilmType)
+        detailsViewModel.getWatchProviders(film.id)
         detailsViewModel.getFilmGenre(film.id)
     }
 
@@ -176,40 +173,7 @@ fun FilmDetails(
                 verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.Start
             ) {
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    Text(
-                        text = when (filmType) {
-                            FilmType.TVSHOW -> "Series"
-                            FilmType.MOVIE -> "Movie"
-                        },
-                        modifier = Modifier
-                            .clip(shape = RoundedCornerShape(size = 4.dp))
-                            .background(Color.DarkGray.copy(alpha = 0.65F))
-                            .padding(2.dp),
-                        color = AppOnPrimaryColor.copy(alpha = 0.78F),
-                        fontSize = 12.sp,
-                    )
-                    Text(
-                        text = when (film.adult) {
-                            true -> "18+"
-                            else -> "PG"
-                        },
-                        modifier = Modifier
-                            .padding(start = 8.dp)
-                            .clip(shape = RoundedCornerShape(size = 4.dp))
-                            .background(
-                                if (film.adult) Color(0xFFFF7070) else Color.DarkGray.copy(
-                                    alpha = 0.65F
-                                )
-                            )
-                            .padding(2.dp),
-                        color = AppOnPrimaryColor.copy(alpha = 0.78F),
-                        fontSize = 12.sp,
-                    )
-                }
+
 
                 Text(
                     text = film.title,

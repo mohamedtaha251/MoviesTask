@@ -9,9 +9,9 @@ import java.lang.Exception
 import javax.inject.Inject
 
 class GenreRepository @Inject constructor(private val api: ApiService) {
-    suspend fun getMoviesGenre(filmType: FilmType): Resource<GenreResponse> {
+    suspend fun getMoviesGenre(): Resource<GenreResponse> {
         val response = try {
-            if (filmType == FilmType.MOVIE) api.getMovieGenres() else api.getTvShowGenres()
+            api.getMovieGenres()
         } catch (e: Exception){
             return Resource.Error("Unknown error occurred!")
         }

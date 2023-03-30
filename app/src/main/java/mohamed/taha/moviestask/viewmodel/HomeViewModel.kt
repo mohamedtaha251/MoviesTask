@@ -21,9 +21,6 @@ class HomeViewModel @Inject constructor(
     private val filmRepository: FilmRepository) : ViewModel() {
 
 
-    var selectedFilmType: MutableState<FilmType> = mutableStateOf(FilmType.MOVIE)
-
-
     private var _topRatedFilm = mutableStateOf<Flow<PagingData<Film>>>(emptyFlow())
     val topRatedFilmState: State<Flow<PagingData<Film>>> = _topRatedFilm
 
@@ -38,31 +35,31 @@ class HomeViewModel @Inject constructor(
         refreshAll()
     }
 
-     fun refreshAll(filmType: FilmType = selectedFilmType.value) {
+     fun refreshAll() {
 
-        getTopRatedFilm( filmType)
-        getNowPlayingFilms( filmType)
-        getMostPopularFilms( filmType)
+        getTopRatedFilm( )
+        getNowPlayingFilms( )
+        getMostPopularFilms( )
 
     }
 
 
-    private fun getTopRatedFilm(filmType: FilmType) {
+    private fun getTopRatedFilm() {
         viewModelScope.launch {
-            _topRatedFilm.value = filmRepository.getTopRatedFilm(filmType).cachedIn(viewModelScope)
+            _topRatedFilm.value = filmRepository.getTopRatedFilm().cachedIn(viewModelScope)
         }
     }
 
-    private fun getNowPlayingFilms(filmType: FilmType) {
+    private fun getNowPlayingFilms() {
         viewModelScope.launch {
             _nowPlayingFilm.value =
-                filmRepository.getNowPlayingFilms(filmType).cachedIn(viewModelScope)
+                filmRepository.getNowPlayingFilms().cachedIn(viewModelScope)
         }
     }
-    private fun getMostPopularFilms(filmType: FilmType) {
+    private fun getMostPopularFilms() {
         viewModelScope.launch {
             _mostPopularFilm.value =
-                filmRepository.getMostPopularFilms(filmType).cachedIn(viewModelScope)
+                filmRepository.getMostPopularFilms().cachedIn(viewModelScope)
         }
     }
 }

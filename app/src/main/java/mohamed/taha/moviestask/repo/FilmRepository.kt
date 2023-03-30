@@ -19,41 +19,40 @@ class FilmRepository @Inject constructor(
     private val api: ApiService
 ) {
 
-    fun getTopRatedFilm(filmType: FilmType): Flow<PagingData<Film>> {
+    fun getTopRatedFilm(): Flow<PagingData<Film>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 20),
             pagingSourceFactory = {
-                TopRatedFilmSource(api = api, filmType)
+                TopRatedFilmSource(api = api)
             }
         ).flow
     }
 
-    fun getNowPlayingFilms(filmType: FilmType): Flow<PagingData<Film>> {
+    fun getNowPlayingFilms(): Flow<PagingData<Film>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 20),
             pagingSourceFactory = {
-                NowPlayingFilmSource(api = api, filmType)
+                NowPlayingFilmSource(api = api)
             }
         ).flow
     }
 
-    fun getMostPopularFilms(filmType: FilmType): Flow<PagingData<Film>> {
+    fun getMostPopularFilms(): Flow<PagingData<Film>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = 20),
             pagingSourceFactory = {
-                MostPopularFilmSource(api = api, filmType)
+                MostPopularFilmSource(api = api)
             }
         ).flow
     }
 
     suspend fun getWatchProviders(
-        filmType: FilmType, filmId: Int
+         filmId: Int
     ): Resource<WatchProviderResponse> {
         val response = try {
-            if (filmType == FilmType.MOVIE) api.getWatchProviders(
+            api.getWatchProviders(
                 filmPath = "movie", filmId = filmId
             )
-            else api.getWatchProviders(filmPath = "tv", filmId = filmId)
         } catch (e: Exception) {
             return Resource.Error("Error when loading providers")
         }

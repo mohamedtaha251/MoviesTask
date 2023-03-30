@@ -29,9 +29,9 @@ class DetailsViewModel @Inject constructor(
     private var _filmGenres = mutableStateListOf(Genre(null, "All"))
     val filmGenres: SnapshotStateList<Genre> = _filmGenres
 
-    fun getWatchProviders(filmId: Int, filmType: FilmType) {
+    fun getWatchProviders(filmId: Int) {
         viewModelScope.launch {
-            repository.getWatchProviders(filmType = filmType, filmId = filmId).also {
+            repository.getWatchProviders( filmId = filmId).also {
                 if (it is Resource.Success) {
                     _watchProviders.value = it.data!!.results
                 }
@@ -42,7 +42,7 @@ class DetailsViewModel @Inject constructor(
     fun getFilmGenre(genreId:Int) {
         viewModelScope.launch {
             val defaultGenre = Genre(genreId, "All")
-            when (val results = genreRepository.getMoviesGenre(FilmType.MOVIE)) {
+            when (val results = genreRepository.getMoviesGenre()) {
                 is Resource.Success -> {
                     _filmGenres.clear()
                     _filmGenres.add(defaultGenre)

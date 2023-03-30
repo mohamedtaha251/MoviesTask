@@ -8,7 +8,7 @@ import mohamed.taha.moviestask.util.FilmType
 import retrofit2.HttpException
 import java.io.IOException
 
-class TopRatedFilmSource(private val api: ApiService, private val filmType: FilmType) :
+class TopRatedFilmSource(private val api: ApiService) :
     PagingSource<Int, Film>() {
     override fun getRefreshKey(state: PagingState<Int, Film>): Int? {
         return state.anchorPosition
@@ -17,9 +17,7 @@ class TopRatedFilmSource(private val api: ApiService, private val filmType: Film
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Film> {
         return try {
             val nextPage = params.key ?: 1
-            val topRatedMovies =
-                if (filmType == FilmType.MOVIE) api.getTopRatedMovies(page = nextPage)
-                else api.getTopRatedTvShows(page = nextPage)
+            val topRatedMovies =api.getTopRatedMovies(page = nextPage)
 
             LoadResult.Page(
                 data = topRatedMovies.results,

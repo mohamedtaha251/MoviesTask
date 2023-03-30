@@ -121,7 +121,6 @@ fun NestedScroll(
     val topRatedFilms = homeViewModel.topRatedFilmState.value.collectAsLazyPagingItems()
     val nowPlayingFilms = homeViewModel.nowPlayingMoviesState.value.collectAsLazyPagingItems()
     val mostPopularFilms = homeViewModel.mostPopularMoviesState.value.collectAsLazyPagingItems()
-    val selectedFilmType = homeViewModel.selectedFilmType.value
     val myWatchList = watchListViewModel.watchList.value.collectAsState(initial = emptyList())
 
     LaunchedEffect(key1 = myWatchList.value.size) {
@@ -149,7 +148,7 @@ fun NestedScroll(
             ScrollableMovieItems(
                 navigator = navigator,
                 pagingItems = topRatedFilms,
-                selectedFilmType = selectedFilmType,
+                
                 onErrorClick = {
                     homeViewModel.refreshAll()
                 }
@@ -171,7 +170,7 @@ fun NestedScroll(
                 ScrollableMovieItems(
                     navigator = navigator,
                     pagingItems = nowPlayingFilms,
-                    selectedFilmType = selectedFilmType,
+
                     onErrorClick = {
                         homeViewModel.refreshAll()
                     }
@@ -193,7 +192,7 @@ fun NestedScroll(
             ScrollableMovieItems(
                 navigator = navigator,
                 pagingItems = mostPopularFilms,
-                selectedFilmType = selectedFilmType,
+                
                 onErrorClick = {
                     homeViewModel.refreshAll()
                 }
@@ -283,7 +282,6 @@ internal fun trimTitle(text: String) = if (text.length <= 26) text else {
 @Composable
 private fun ScrollableMovieItems(
     landscape: Boolean = false,
-    selectedFilmType: FilmType,
     navigator: DestinationsNavigator?,
     pagingItems: LazyPagingItems<Film>,
     onErrorClick: () -> Unit
