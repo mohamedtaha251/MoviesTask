@@ -11,3 +11,4 @@ class MoviesTaskApp : Application() {
         Timber.plant(Timber.DebugTree())
     }
 }
+
