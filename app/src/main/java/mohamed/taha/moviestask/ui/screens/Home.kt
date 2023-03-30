@@ -178,8 +178,29 @@ fun NestedScroll(
             }
         }
 
+
         item {
-            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Favorites",
+                fontSize = 24.sp,
+                color = AppOnPrimaryColor,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 4.dp, top = 14.dp, bottom = 4.dp)
+            )
+        }
+        item {
+            ScrollableMovieItems(
+                navigator = navigator,
+                pagingItems = nowPlayingFilms,
+                selectedFilmType = selectedFilmType,
+                onErrorClick = {
+                    homeViewModel.refreshAll()
+                }
+            )
+        }
+
+        item {
+            Spacer(modifier = Modifier.height(50.dp))
         }
     }
 }
