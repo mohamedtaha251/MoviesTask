@@ -1,0 +1,27 @@
+name: Build and Publish Premuim Release APK
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          sdk-platform: 'android-30'
+          ndk-version: '21.1.6352462'
+      - name: Build Paid Release APK
+        run: ./gradlew assemblePremiumRelease
+      - name: Publish Paid Release APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: My-App-Paid-Release-APK
+          path: app/cicd/app-paid-release.apk
