@@ -1,9 +1,10 @@
 name: Build and Publish Premuim Release APK
 
 on:
-  push:
-    branches:
-      - 'master'
+  push:
+    branches:
+    - master
+    - release/*
 
 jobs:
   build:
