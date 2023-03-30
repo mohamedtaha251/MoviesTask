@@ -11,13 +11,13 @@ import mohamed.taha.moviestask.R
 import mohamed.taha.moviestask.ui.screens.WatchList
 
 @AndroidEntryPoint
-class NotificationsFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_notifications, container, false).apply {
+        return inflater.inflate(R.layout.fragment_favorites, container, false).apply {
             findViewById<ComposeView>(R.id.composeView).setContent {
                 WatchList()
             }

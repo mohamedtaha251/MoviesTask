@@ -8,16 +8,15 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import mohamed.taha.moviestask.R
-import mohamed.taha.moviestask.ui.screens.Home
 import mohamed.taha.moviestask.ui.screens.TopRated
 @AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class TopRatedFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_dashboard, container, false).apply {
+        return inflater.inflate(R.layout.fragment_toprated, container, false).apply {
             findViewById<ComposeView>(R.id.composeView).setContent {
                 TopRated()
             }

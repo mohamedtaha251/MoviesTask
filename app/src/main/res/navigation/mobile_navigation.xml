@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="mohamed.taha.moviestask.ui.fragment.DashboardFragment"
+        android:name="mohamed.taha.moviestask.ui.fragment.TopRatedFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_toprated" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="mohamed.taha.moviestask.ui.fragment.NotificationsFragment"
+        android:name="mohamed.taha.moviestask.ui.fragment.FavoritesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_favorites" />
 </navigation>
