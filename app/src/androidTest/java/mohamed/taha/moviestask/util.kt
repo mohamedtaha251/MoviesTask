@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Matcher
 
- fun selectBottomNavigationItem(index: Int): ViewAction {
+fun selectBottomNavigationItem(index: Int): ViewAction {
     return object : ViewAction {
         override fun getConstraints(): Matcher<View> {
             return CoreMatchers.allOf(
