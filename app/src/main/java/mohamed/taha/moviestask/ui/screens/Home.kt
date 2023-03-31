@@ -210,6 +210,7 @@ fun MovieItem(
     Column(
         modifier = Modifier
             .wrapContentHeight()
+            .testTag("MovieItem")
             .padding(all = 4.dp)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },

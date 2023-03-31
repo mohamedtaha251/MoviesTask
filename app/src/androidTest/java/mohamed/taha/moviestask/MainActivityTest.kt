@@ -11,24 +11,41 @@ import org.junit.runner.RunWith
 import androidx.compose.ui.test.*
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
+import mohamed.taha.moviestask.ui.activity.MovieDetails
 import mohamed.taha.moviestask.ui.activity.SearchActivity
 
 @RunWith(AndroidJUnit4::class)
-class MyHybridActivityTest {
+class MainActivityTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
+
     @Test
-    fun testClickButton() {
+    fun testSearchNavigation() {
+        Intents.init()
         composeTestRule.setContent {
             Home()
         }
-        Intents.init()
 
         composeTestRule.onNodeWithTag("SearchBarHome").performClick()
         Intents.intended(IntentMatchers.hasComponent(SearchActivity::class.java.name))
+        Intents.release()
 
     }
+
+    @Test
+    fun testMovieDetailsNavigation() {
+        Intents.init()
+        composeTestRule.setContent {
+            Home()
+        }
+
+        composeTestRule.onAllNodesWithTag("MovieItem").onFirst().performClick()
+        Intents.intended(IntentMatchers.hasComponent(MovieDetails::class.java.name))
+        Intents.release()
+
+    }
+
 }
 
