@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale.Companion.Crop
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
@@ -90,6 +91,7 @@ fun SearchMoviesBar() {
     ) {
 
         IconButton(
+            modifier = Modifier.testTag("SearchBarHome"),
             onClick = {
                 SearchActivity.start(context)
             }
